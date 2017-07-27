@@ -91,7 +91,12 @@ Client.prototype.request = function(requestData, callback) {
   }
 
   // Make call to MWS
-  request.post(options, function (error, response, body) {
+  
+  request.post({
+    headers: {'content-type' : 'application/x-www-form-urlencoded'},
+    url:     options.url,
+    body:    requestData.feedContent
+  }, function(error, response, body){
     if (error) return callback(error);
 
     if (response.headers.hasOwnProperty('content-type') && response.headers['content-type'].startsWith('text/xml')) {
@@ -108,4 +113,21 @@ Client.prototype.request = function(requestData, callback) {
       }, callback);
     }
   });
+//   request.post(options, function (error, response, body) {
+//     if (error) return callback(error);
+
+//     if (response.headers.hasOwnProperty('content-type') && response.headers['content-type'].startsWith('text/xml')) {
+//       // xml2js
+//       xmlParser(body, function (err, result) {
+//         callback(err, result);
+//       });
+//     } else {
+//       // currently only other type of data returned is tab-delimited text
+//       tabParser(body, {
+//         delimiter:'\t',
+//         columns: true,
+//         relax: true
+//       }, callback);
+//     }
+//   });
 };
