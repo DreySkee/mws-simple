@@ -97,6 +97,10 @@ Client.prototype.request = function(requestData, callback) {
     url:     options.url,
     body:    requestData.feedContent
   }, function(error, response, body){
+    console.log('::: MWS SIMPLE BODY ERR :::', error)
+    console.log('::: MWS SIMPLE BODY RESP :::', response)
+    console.log('::: MWS SIMPLE BODY :::', body)
+    
     if (error) return callback(error);
 
     if (response.headers.hasOwnProperty('content-type') && response.headers['content-type'].startsWith('text/xml')) {
