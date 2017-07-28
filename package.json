@@ -1,5 +1,5 @@
 {
-  "name": "mws-simple",
+  "name": "mws-simple-body",
   "version": "1.0.2",
   "description": "nodejs Amazon MWS API in 100 lines of code",
   "main": "mws-simple.js",
